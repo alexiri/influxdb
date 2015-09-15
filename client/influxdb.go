@@ -130,7 +130,7 @@ func (c *Client) SetAuth(u, p string) {
 
 // SetPrecision will update the precision
 func (c *Client) SetPrecision(precision string) {
-        c.precision = precision
+	c.precision = precision
 }
 
 // Query sends a command to the server and returns the Response
@@ -460,7 +460,11 @@ func (p *Point) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Point) MarshalString() string {
-	return tsdb.NewPoint(p.Measurement, p.Tags, p.Fields, p.Time).String()
+	pt := tsdb.NewPoint(p.Measurement, p.Tags, p.Fields, p.Time)
+	if p.Precision == "" || p.Precision == "ns" || p.Precision == "n" {
+		return pt.String()
+	}
+	return pt.PrecisionString(p.Precision)
 }
 
 // UnmarshalJSON decodes the data into the Point struct
