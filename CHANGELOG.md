@@ -3,6 +3,9 @@
 ### Features
 - [#4065](https://github.com/influxdb/influxdb/pull/4065): Added precision support in cmd client. Thanks @sbouchex
 
+### Bugfixes
+- [#4111](https://github.com/influxdb/influxdb/pull/4111): Update pre-commit hook for go vet composites
+
 ## v0.9.4 [2015-09-14]
 
 ### Release Notes
